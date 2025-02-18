@@ -3,4 +3,4 @@
 
 > 介紹方法
 
-### Algorithm 1 | 
+### Algorithm 1
