@@ -4,12 +4,12 @@
 > 介紹方法
 
 ### 練習1:輸入三個學生的國文英文數學資料,
-  - 使用方法: 使用鏈結串列與陣列
+  - 使用方法: 使用鏈結串列與結構陣列
   - 並輸出姓名,學號,各科成績及總分
   - 從小到大排列
   - 列出總分最高跟最低
   - 列出名次
-- code(unfinished)
+- code(鏈結串列)
 ```
 #include<stdio.h>
 #include<stdlib.h>
@@ -102,4 +102,60 @@ int main(){
 	return 0;
 } 
 ```
+- code(結構陣列):
+```
+#include<stdio.h>
+#include<stdlib.h>
+#define max 10
+#define st_num 5
+struct student {
+    char st_name[max];
+    char st_id[max];
+    int chinese;
+    int english;
+    int math;
+    int st_total;
+    int st_average;
+
+};
+int main(){
+    struct student students[st_num];
+    int i,count=0;
+    while(count <st_num){
+        //最多輸入5個學生的資料
+        printf("1. insert student data\n2. leave\nstudent max: %d\n",st_num);
+        printf("please insert i:");
+        scanf("%d",&i);
+        if(i==1){
+            //insert data
+            printf("insert student name:");
+            scanf("%s",students[count].st_name);
+            printf("insert student ID:");
+            scanf("%s",students[count].st_id);
+            printf("insert student chinese grade:");
+            scanf("%d",&students[count].chinese);
+            printf("insert student English grade:");
+            scanf("%d",&students[count].english);
+            printf("insert student math grade:");
+            scanf("%d",&students[count].math);
+            students[count].st_total = students[count].chinese + students[count].english + students[count].math;
+            students[count].st_average = (students[count].chinese + students[count].english + students[count].math)/3;
+            count++;
+        }else if(i==2){
+            break;
+        }else{
+            printf("insert error!\n");
+        }
     
+    }
+    
+    //打印所有學生結果    
+    for(int i = 0; i < count; i++) {
+        printf("student name: %s\tstudent ID: %s\nstudent Chinese grade: %d\nstudent English grade: %d\nstudent Math grade: %d\nstudent total: %d\nstudent average: %d",
+               students[i].st_name, students[i].st_id, students[i].chinese, students[i].english, students[i].math,students[i].st_total,students[i].st_average);
+    }
+    
+
+    return 0;
+}
+```
