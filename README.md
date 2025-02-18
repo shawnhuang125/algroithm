@@ -19,26 +19,30 @@ struct node {
 	int chinese;
 	int english;
 	int math;
-	int totoal;
+	int total;
 	struct node* next;
 };
 struct node* createnode(int subject, int data){
 	int math,chinese,english;
 	struct node* newnode = (struct node*)malloc(sizeof(struct node));
-	if(newnode=NULL){
+	if(newnode==NULL){
 		printf("memory allocation error!\n");
 	}
+	newnode->math = 0;
+    newnode->chinese = 0;
+    newnode->english = 0;
 	if(subject==math){
 		printf("loading to add math\n");
-		node->math = data;
+		newnode->math = data;
 	}else if(subject==chinese){
 		printf("loading to add chinese\n");
-		node->chinese = data;
+		newnode->chinese = data;
 	}else if(subject==english){
 		printf("loading to add english\n");
-		node->english = data;
+		newnode->english = data;
 	}
-	node->next = NULL;
+	newnode->next = NULL;
+	return newnode;
 }
 struct node* addnode(struct node** head, char subject[10], int data){
 	struct node* newnode = createnode(subject[10],data);
@@ -51,14 +55,16 @@ struct node* addnode(struct node** head, char subject[10], int data){
 		}
 		*head = newnode;
 	}
+	return *head;
 }
 int showlink(struct node* head){
 	struct node* temp = head;
 	while(temp->next!=NULL){
-		printf("%s --> \n",node->st_name)
-		printf("%s --> \n",node->st_id)
-		printf("%s --> \n",node->st_name)
+		printf("student name: %s\tstudent ID: %s\tMath: %d\tEnglish: %d\tChinese: %d  --> \n",temp->st_name,temp->st_id,temp->math,temp->english,temp->chinese);
+		temp = temp->next;
 	}
+	printf("\n");
+	free(temp);
 }
 
 int main(){
@@ -66,7 +72,7 @@ int main(){
 	char st_name[10],st_id[10],subject[10];
 	struct node* head = NULL;
 	while(insert!=5){
-		printf("1.please insert student name and ID then the subject and the grade;\n2.leave\n");
+		printf("1.please insert student name and ID then the subject and the grade;\n2.show data;\n3.leave\n");
 		printf("insert:");
 		scanf("%d",&insert);
 		if(insert == 1){
@@ -83,10 +89,11 @@ int main(){
         	printf("insert grade");
         	scanf("%d",&grade);
         	printf("inserted data:%d\n",grade);
-        
 			
 			addnode(&head,subject,grade);
 		}else if(insert == 2){
+			showlink(head);
+		}else if(insert == 3){
 			printf("leaving....\n");
 			break;
 		}
