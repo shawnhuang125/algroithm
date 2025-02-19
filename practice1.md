@@ -93,7 +93,7 @@ int main(){
     return 0;
 }
 ```
-- 輸出
+- 輸出(錯誤)
 
 ```
 1. insert student data
@@ -224,7 +224,7 @@ int main(){
     return 0;
 }
 ```
-- 輸出
+- 輸出(正確)
 ```
 1. insert student data
 2. show data
