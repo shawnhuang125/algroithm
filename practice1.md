@@ -22,8 +22,8 @@ struct node* createnode(char* name, char* id, int chinese_grade, int english_gra
     }
     
     // insert student data inside the node
-    newnode->st_name = strdup(name);
-    newnode->st_id = str(id);
+    newnode->st_name = name;
+    newnode->st_id = id;
     newnode->chinese = chinese_grade;
     newnode->english = english_grade;
     newnode->math = math_grade;
