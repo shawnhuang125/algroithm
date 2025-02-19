@@ -3,8 +3,8 @@
 
 > 介紹方法
 
-### [連結串列]()
-  - **回顧練習**:輸入三個學生的國文英文數學成績 | [code](https://github.com/shawnhuang125/algroithm/blob/main/practice1.md)
+### 資料結構回顧
+  - [連結串列回顧練習](https://github.com/shawnhuang125/Data_structure/blob/main/dynamic_allocate_and_linked_list.md):輸入三個學生的國文英文數學成績 | [code](https://github.com/shawnhuang125/algroithm/blob/main/practice1.md)
   - 使用方法: 分別使用鏈結串列與結構陣列
   - 並輸出姓名,學號,各科成績及總分
   - 列出總分
