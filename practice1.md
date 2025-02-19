@@ -22,8 +22,11 @@ struct node* createnode(char* name, char* id, int chinese_grade, int english_gra
     }
     
     // insert student data inside the node
-    newnode->st_name = name;
-    newnode->st_id = id;
+    newnode->st_name = strdup(name);
+    newnode->st_id = strdup(id);
+    // If you don't use strdup or malloc, the memory for 'name' and 'id' will be overwritten
+    // because they are local variables in the main function. The pointers in the node structure will point to invalid or overwritten memory, leading to incorrect behavior and repeated or corrupted data.
+    // the purpose of using strdup is to copy the values of 'name' and 'id' into a newly allocated memory.
     newnode->chinese = chinese_grade;
     newnode->english = english_grade;
     newnode->math = math_grade;
