@@ -1,4 +1,5 @@
-### 二元樹實作
+# 二元樹
+- **建立完全二元樹**
 ```
 #include<stdlib.h>
 #include<stdio.h>
@@ -47,7 +48,7 @@ struct node* addnode(struct node** head, int data){
 	}
 	return *head;
 }
-/*void showtree(struct node* head){
+void showtree(struct node* head){
 	struct node* queue[100];
 		int front=0,rear=0;
 		queue[rear++] = head;//把root放進queue最裡面 
@@ -68,7 +69,25 @@ struct node* addnode(struct node** head, int data){
 			printf("\n");
 			level++;
 		}
-}*/
+}
+int main(){
+	struct node* head = NULL;
+	addnode(&head,3);
+	addnode(&head,2);
+	addnode(&head,1);
+	addnode(&head,8);
+	addnode(&head,6);
+	PreOrdershowtree(head);
+	printf("\n");
+	PostOrdershowtree(head);
+	printf("\n");
+	InOrdershowtree(head);
+	printf("\n");
+	return 0;
+} 
+```
+- **前置,中置與後置法印出完全二元樹**
+```
 void PreOrdershowtree(struct node* head){
 	if(head== NULL)	return;
 	printf("%d, ",head->data);
@@ -87,19 +106,63 @@ void InOrdershowtree(struct node* head){
 	printf("%d, ",head->data);
 	InOrdershowtree(head->R);
 }
+```
+### 二元搜尋樹
+- **建立二元搜尋樹**
+- 邏輯
+	1. 如果data > head且子節點不為空那就繼續往右子節點造訪,直到右子節點的右子節點指標為空,創建新節點並填入data
+  	2. 如果data < head且子節點不為空那就繼續往左子節點造訪,直到左子節點的左子節點指標為空,創建新節點並填入data
+```
+#include<stdio.h>
+#include<stdlib.h>
+struct node {
+    int data;
+    struct node* L;
+    struct node* R;
+};
+struct node* addnode(struct node* head,int data){
+    if(head == NULL){
+        struct node* newnode = (struct node*)malloc(sizeof(struct node));
+        newnode->data = data;
+        newnode->L = NULL;
+        newnode->R = NULL;
+        return newnode;
+    }
+    if(data > head->data){//如果data>root就檢查右子節點是否為空
+            head->R = addnode(head->R,data);
+    }
+    if(data < head->data){//如果data<root就檢查左子節點是否為空
+            head->L = addnode(head->L,data);
+    }
+    return head;//從樹根更新整顆二元樹
+}
+
 int main(){
-	struct node* head = NULL;
-	addnode(&head,3);
-	addnode(&head,2);
-	addnode(&head,1);
-	addnode(&head,8);
-	addnode(&head,6);
-	PreOrdershowtree(head);
-	printf("\n");
-	PostOrdershowtree(head);
-	printf("\n");
-	InOrdershowtree(head);
-	printf("\n");
-	return 0;
-} 
+    struct node* root = NULL;//建立ROOT節點
+    root = addnode(root,12);
+    root = addnode(root,18);
+    root = addnode(root,75);
+    root = addnode(root,83);
+    root = addnode(root,49);
+    root = addnode(root,32);
+    return 0;
+```
+- **建立查找指定值的函式**
+```
+void findout(struct node* head,int data){
+    if(head==NULL){
+        printf("no data here.\n");
+        return;
+    }  
+    printf("Checking node: %d\n", head->data);
+    if(head->data ==data){
+        printf("find it.\n");//如果dat跟root的dat是一樣的就結束並輸出已找到
+        return;
+    }   
+    if(head->data > data){
+        findout(head->L,data); //如果data小於head節點的data那就繼續往左邊查找
+    }else{
+        findout(head->R,data);//如果data大於head節點的data那就繼續遞迴找右節點
+    }
+}
 ```
