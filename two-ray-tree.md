@@ -47,7 +47,7 @@ struct node* addnode(struct node** head, int data){
 	}
 	return *head;
 }
-void showtree(struct node* head){
+/*void showtree(struct node* head){
 	struct node* queue[100];
 		int front=0,rear=0;
 		queue[rear++] = head;//把root放進queue最裡面 
@@ -68,7 +68,7 @@ void showtree(struct node* head){
 			printf("\n");
 			level++;
 		}
-}
+}*/
 void PreOrdershowtree(struct node* head){
 	if(head== NULL)	return;
 	printf("%d, ",head->data);
@@ -94,7 +94,12 @@ int main(){
 	addnode(&head,1);
 	addnode(&head,8);
 	addnode(&head,6);
-	showtree(head);
+	PreOrdershowtree(head);
+	printf("\n");
+	PostOrdershowtree(head);
+	printf("\n");
+	InOrdershowtree(head);
+	printf("\n");
 	return 0;
 } 
 ```
