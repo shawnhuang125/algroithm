@@ -84,7 +84,25 @@ void showtree(struct node* head){
 			printf("\n");
 			level++;
 		}
+}
+void PreOrdershowtree(struct node* head){
+	if(head== NULL)	return;
+	printf("%d, ",head->data);
+	PreOrdershowtree(head->L);
+	PreOrdershowtree(head->R);
 } 
+void PostOrdershowtree(struct node* head){
+	if(head== NULL)	return;
+	PostOrdershowtree(head->L);
+	PostOrdershowtree(head->R);
+	printf("%d, ",head->data);
+}
+void InOrdershowtree(struct node* head){
+	if(head== NULL)	return;
+	InOrdershowtree(head->L);
+	printf("%d, ",head->data);
+	InOrdershowtree(head->R);
+}
 int main(){
 	struct node* head = NULL;
 	addnode(&head,3);
